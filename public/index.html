@@ -9,7 +9,7 @@
       homescreen on Android. See https://developers.google.com/web/fundamentals/engage-and-retain/web-app-manifest/
     -->
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
-    <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
+    <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.png">
     <!--
       Notice the use of %PUBLIC_URL% in the tags above.
       It will be replaced with the URL of the `public` folder during the build.
@@ -19,7 +19,7 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-    <title>React App</title>
+	<title>React App</title>
   </head>
   <body>
     <noscript>
@@ -35,6 +35,21 @@
 
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
-    -->
+	-->
+	
+		<script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/4.13.0/firebase-firestore.js"></script>
+		<script>
+		// Initialize Firebase
+		var config = {
+			apiKey: "AIzaSyA2yb4yivgKZo890w9xdcyduBknl9e7z4c",
+			authDomain: "task-board-1859e.firebaseapp.com",
+			databaseURL: "https://task-board-1859e.firebaseio.com",
+			projectId: "task-board-1859e",
+			storageBucket: "task-board-1859e.appspot.com",
+			messagingSenderId: "766123711340"
+		};
+		firebase.initializeApp(config);
+		</script>
   </body>
 </html>
