@@ -6,8 +6,7 @@ import '../css/signin.css';
 
 class Signin extends Component {
 
-	constructor() {
-		super();
+	componentDidMount() {
 		const uiConfig = {
 			callbacks: {
 				signInSuccessWithAuthResult: function(authResult) {
