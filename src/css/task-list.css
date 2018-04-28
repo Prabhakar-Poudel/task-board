@@ -1,0 +1,29 @@
+.task-list-outer {
+	height: 100%;
+	flex-basis: 32%;
+	padding: 5px;
+}
+
+.task-list {
+	background-color: #CCC;
+	padding: 0 8px;
+	border-radius: 4px;
+}
+
+.list-header {
+	font-weight: bolder;
+	font-size: 18px;
+	text-align: center;
+	padding: 10px 0;
+	border-bottom: 1px solid #f5f5dc;
+}
+
+.list-footer {
+	padding: 8px 5px;
+	opacity: 0.5;
+}
+
+.list-footer:hover {
+	opacity: 1;
+	cursor: pointer;
+}

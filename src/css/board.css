@@ -1,0 +1,33 @@
+.task-board {
+	height: 100%;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+}
+
+.board-header {
+	background-color: #666;
+	color: #FFF;
+	text-align: center;
+	padding: 10px 0;
+	font-weight: bold;
+}
+
+.sign-out {
+	float: right;
+	font-weight: normal;
+	margin-right: 5px;
+	background-color: transparent;
+	color: #FFF;
+	border: none;
+	cursor: pointer;
+	outline: 0;
+}
+
+.bord-lists {
+	display: flex;
+	height: 100%;
+	width: 100%;
+	overflow: hidden;
+	justify-content: space-between;
+}

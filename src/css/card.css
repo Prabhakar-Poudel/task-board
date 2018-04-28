@@ -1,0 +1,25 @@
+.card {
+	display: flex;
+	margin-bottom: 5px;
+	min-height: 20px;
+	padding: 3px 3px 3px 5px;
+	border-radius: 3px;
+	cursor: pointer;
+	background-color: #FFFFFF;
+	overflow: hidden;
+}
+
+.card-text {
+	flex-basis: 95%;
+}
+
+.card-options {
+	margin: auto 0;
+	font-weight: bolder;
+	flex-basis: 5%;
+	text-align: center;
+}
+
+.card-options:hover {
+	background-color: #DDD;
+}
