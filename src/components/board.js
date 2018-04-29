@@ -34,6 +34,14 @@ class Board extends Component {
 							case listType.DONE: doneList.push({ ...data, id: change.doc.id }); break;
 							default: console.error('unknown type', data.type, data); // eslint-disable-line no-console
 							}	
+						} else if (change.type === 'removed') {
+							const data = change.doc.data();
+							switch (data.type) {
+							case listType.TO_DO: toDoList.splice(toDoList.findIndex(item => item.id === change.doc.id), 1); break;
+							case listType.IN_PROGRESS: inProgressList.splice(inProgressList.findIndex(item => item.id === change.doc.id), 1); break;
+							case listType.DONE: doneList.splice(doneList.findIndex(item => item.id === change.doc.id), 1); break;
+							default: console.error('unknown type', data.type, data); // eslint-disable-line no-console
+							}	
 						}
 					});
 					this.setState({ toDoList, inProgressList, doneList });
@@ -46,6 +54,10 @@ class Board extends Component {
 			this.dataListnerunsubscribe();
 		}
 		firebase.auth().signOut();
+	}
+
+	removeItem(itemId) {
+		firestore.collection('bord-items').doc(itemId).delete();
 	}
 
 	addItemToBoard(type, content, position) {
@@ -65,9 +77,12 @@ class Board extends Component {
 					<button className="sign-out" onClick={this.signOutUser}>Sign out</button>
 				</div>
 				<div className="bord-lists">
-					<TaskList listHeader="To Do" listItems={this.state.toDoList} listType={listType.TO_DO} addItemToBoard={this.addItemToBoard} />
-					<TaskList listHeader="In Progress" listItems={this.state.inProgressList} listType={listType.IN_PROGRESS} addItemToBoard={this.addItemToBoard} />
-					<TaskList listHeader="Done" listItems={this.state.doneList} listType={listType.DONE} addItemToBoard={this.addItemToBoard} />
+					<TaskList listHeader="To Do" listItems={this.state.toDoList} removeCard={this.removeItem}
+						listType={listType.TO_DO} addItemToBoard={this.addItemToBoard} />
+					<TaskList listHeader="In Progress" listItems={this.state.inProgressList}  removeCard={this.removeItem}
+						listType={listType.IN_PROGRESS} addItemToBoard={this.addItemToBoard} />
+					<TaskList listHeader="Done" listItems={this.state.doneList}  removeCard={this.removeItem}
+						listType={listType.DONE} addItemToBoard={this.addItemToBoard} />
 				</div>
 			</div>
 		) : (

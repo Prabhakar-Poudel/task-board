@@ -5,8 +5,10 @@
 	height: 100%;
 	width: 100%;
 	overflow: hidden;
+	background-image: url('../assets/background.jpg');
 }
 
 #firebase-login {
 	margin: auto;
+	opacity: 1;
 }

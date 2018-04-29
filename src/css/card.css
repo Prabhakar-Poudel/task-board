@@ -7,19 +7,25 @@
 	cursor: pointer;
 	background-color: #FFFFFF;
 	overflow: hidden;
+	box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.2),
+	 0px 2px 2px 0px rgba(0, 0, 0, 0.14),
+	 0px 3px 1px -2px rgba(0, 0, 0, 0.12);
+	box-sizing: border-box;
 }
 
 .card-text {
 	flex-basis: 95%;
 }
 
-.card-options {
+.delete-card {
 	margin: auto 0;
 	font-weight: bolder;
 	flex-basis: 5%;
 	text-align: center;
+	opacity: 0.2;
+	color: tomato;
 }
 
-.card-options:hover {
-	background-color: #DDD;
+.delete-card:hover {
+	opacity: 1;
 }

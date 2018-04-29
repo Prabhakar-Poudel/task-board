@@ -37,20 +37,20 @@ class TaskList extends Component {
 					</div>
 					<div className="task-list-body">
 						{this.props.listItems.map(item => {
-							return <Card key={item.id} content={item.content} id={item.id} />;
+							return <Card key={item.id} content={item.content} id={item.id} deleteCard={() => this.props.removeCard(item.id)} />;
 						})}
-					</div>
-					{
-						!this.state.showNewInput &&
-						<div className="list-footer" onClick={() => this.setState({ showNewInput: true}) }>
+						{
+							!this.state.showNewInput &&
+							<div className="list-footer" onClick={() => this.setState({ showNewInput: true}) }>
 							Add New&#8230;
-						</div>
-					}
+							</div>
+						}
 					
-					{
-						this.state.showNewInput && 
-						<NewItem className="hidden" cancelNew={this.cancelNew} addItem={this.addNewCard} />
-					}
+						{
+							this.state.showNewInput && 
+							<NewItem className="hidden" cancelNew={this.cancelNew} addItem={this.addNewCard} />
+						}
+					</div>
 				</div>
 			</div>
 		);
@@ -65,6 +65,7 @@ TaskList.propTypes = {
 	})).isRequired,
 	listType: PropTypes.oneOf([listType.TO_DO, listType.IN_PROGRESS, listType.DONE]).isRequired,
 	addItemToBoard: PropTypes.func.isRequired,
+	removeCard: PropTypes.func.isRequired,
 };
 
 export default TaskList;
