@@ -3,18 +3,19 @@ import PropTtpes from 'prop-types';
 import '../css/card.css';
 
 class Card extends Component {
+	
 	render() {
 		return(
 			<div className="card">
 				<div className="card-text">{this.props.content}</div>
-				<div className="card-options">&#8942;</div>
+				<i className="fas fa-trash-alt delete-card" onClick={this.props.deleteCard} />
 			</div>
 		);
 	}
 }
 
 Card.propTypes = {
-	id: PropTtpes.string.isRequired,
+	deleteCard: PropTtpes.func.isRequired,
 	content: PropTtpes.string.isRequired,
 };
 
