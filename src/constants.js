@@ -8,4 +8,6 @@ const listType = {
 	'DONE': 'DONE'
 };
 
-export { firebase, firestore, listType };
+const CARD = 'CARD';
+
+export { firebase, firestore, listType, CARD };

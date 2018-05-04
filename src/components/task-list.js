@@ -2,9 +2,24 @@ import React, { Component } from 'react';
 import Card from './card';
 import NewItem from './new-item';
 import PropTypes from 'prop-types';
-import { listType } from '../constants';
+import { listType, CARD } from '../constants';
+import { DropTarget } from 'react-dnd';
 import '../css/task-list.css';
 
+const listTarget = {
+	drop(props, monitor) {
+		if (!monitor.didDrop()) {
+			const { sourceType } = monitor.getItem();
+			let position = props.listItems.length;
+			position = props.listType === sourceType ? position - 1 : position;
+			return {
+				destinationType: props.listType,
+				destinationPosition: position,
+			};
+		}
+		
+	},
+};
 
 class TaskList extends Component {
 
@@ -29,15 +44,22 @@ class TaskList extends Component {
 	}
 
 	render() {
-		return (
+		const { connectDropTarget, listItems, listType, listHeader, removeCard, moveCard } = this.props;
+		return connectDropTarget(
 			<div className="task-list-outer">
 				<div className="task-list">
 					<div className="list-header">
-						{this.props.listHeader}
+						{listHeader}
 					</div>
 					<div className="task-list-body">
-						{this.props.listItems.map(item => {
-							return <Card key={item.id} content={item.content} id={item.id} deleteCard={() => this.props.removeCard(item.id)} />;
+						{listItems.sort((a, b) => {
+							return a.position > b.position ? 1 : 0;
+						}).map(item => {
+							const { id, position, content } = item;
+							return (
+								<Card key={id} content={content} id={id}  listType={listType} position={position}
+									deleteCard={() => removeCard(item, listItems)} moveCard={moveCard}/>
+							);
 						})}
 						{
 							!this.state.showNewInput &&
@@ -66,6 +88,10 @@ TaskList.propTypes = {
 	listType: PropTypes.oneOf([listType.TO_DO, listType.IN_PROGRESS, listType.DONE]).isRequired,
 	addItemToBoard: PropTypes.func.isRequired,
 	removeCard: PropTypes.func.isRequired,
+	moveCard: PropTypes.func.isRequired,
+	connectDropTarget: PropTypes.func.isRequired,
 };
 
-export default TaskList;
+export default DropTarget(CARD, listTarget, connect => ({
+	connectDropTarget: connect.dropTarget(),
+}))(TaskList);
